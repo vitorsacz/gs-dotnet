@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AlertaCidadao.Application\AlertaCidadao.Application.csproj" />
+    <ProjectReference Include="..\AlertaCidadao.Domain\AlertaCidadao.Domain.csproj" />
+    <ProjectReference Include="..\AlertaCidadao.Infraestructure\AlertaCidadao.Infraestructure.csproj" />
+    <ProjectReference Include="..\AlertaCidadao.Tests\AlertaCidadao.Tests.csproj" />
+  </ItemGroup>
+
+</Project>
