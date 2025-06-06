@@ -1,7 +1,9 @@
 
-# 🦷 GS-DotNet — API de Gestão Odontológica
+# 🛑 Alerta Cidadão — API de Gestão de Riscos Ambientais
 
-Este projeto é uma API RESTful desenvolvida em .NET, com o objetivo de gerenciar dados relacionados a um sistema odontológico. A aplicação permite o cadastro e gerenciamento de usuários, profissionais da saúde, pacientes, consultas, especialidades e diagnósticos, além de oferecer recursos de autenticação e autorização com tokens JWT.
+**Slogan:** _Tecnologia que salva vidas em tempo real._
+
+Este projeto é uma API RESTful desenvolvida em .NET, parte integrante do sistema Alerta Cidadão — uma solução inteligente e integrada para monitoramento de enchentes em áreas urbanas de risco. A API permite o gerenciamento de usuários, sensores IoT, registros de eventos ambientais, rotas de evacuação e alertas, além de oferecer autenticação e autorização com tokens JWT.
 
 ---
 
@@ -9,7 +11,7 @@ Este projeto é uma API RESTful desenvolvida em .NET, com o objetivo de gerencia
 
 - [.NET 8](https://learn.microsoft.com/pt-br/dotnet/core/whats-new/dotnet-8) — Framework principal  
 - [Entity Framework Core](https://learn.microsoft.com/pt-br/ef/core/) — ORM para acesso a dados  
-- [SQL Server](https://www.microsoft.com/pt-br/sql-server) — Banco de dados relacional  
+- [Oracle Database](https://www.oracle.com/br/database/) — Banco de dados relacional  
 - [AutoMapper](https://automapper.org/) — Mapeamento de objetos  
 - [FluentValidation](https://docs.fluentvalidation.net/) — Validações  
 - [JWT (JSON Web Token)](https://jwt.io/) — Autenticação e autorização  
@@ -23,7 +25,7 @@ Este projeto é uma API RESTful desenvolvida em .NET, com o objetivo de gerencia
 ### Pré-requisitos
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download)  
-- [SQL Server](https://www.microsoft.com/pt-br/sql-server)  
+- [Oracle Database](https://www.oracle.com/br/database/)  
 - [Visual Studio 2022+](https://visualstudio.microsoft.com/) ou [VS Code](https://code.visualstudio.com/)  
 - [Postman](https://www.postman.com/) (opcional, para testes de API)  
 
@@ -36,15 +38,15 @@ Este projeto é uma API RESTful desenvolvida em .NET, com o objetivo de gerencia
    ```
 
 2. Configure o `appsettings.json`:  
-   No projeto principal, edite o arquivo `appsettings.json` com os dados do seu SQL Server:
+   No projeto principal, edite o arquivo `appsettings.json` com os dados do seu Oracle DB:
 
    ```json
    "ConnectionStrings": {
-     "DefaultConnection": "Server=localhost;Database=ClinicaOdonto;User Id=SEU_USUARIO;Password=SUA_SENHA;"
+     "DefaultConnection": "User Id=SEU_USUARIO;Password=SUA_SENHA;Data Source=localhost:1521/xe;"
    }
    ```
 
-3. Execute as migrações e crie o banco de dados:
+3. Execute as migrações e crie o schema no banco de dados:
    ```bash
    dotnet ef database update
    ```
@@ -72,24 +74,24 @@ A documentação completa está disponível via **Swagger** assim que a API é e
 | POST   | `/api/login`   | Autenticação e geração de token |
 | POST   | `/api/register`| Cadastro de novo usuário       |
 
-### 👤 Usuários
+### 👥 Usuários e Alertas
 
-| Método | Endpoint              | Descrição              |
-|--------|-----------------------|------------------------|
-| GET    | `/api/usuarios`       | Listar todos os usuários |
-| GET    | `/api/usuarios/{id}`  | Obter usuário por ID     |
-| PUT    | `/api/usuarios/{id}`  | Atualizar usuário        |
-| DELETE | `/api/usuarios/{id}`  | Deletar usuário          |
+| Método | Endpoint              | Descrição                  |
+|--------|-----------------------|----------------------------|
+| GET    | `/api/usuarios`       | Listar todos os usuários   |
+| POST   | `/api/alertas`        | Criar novo alerta          |
+| GET    | `/api/sensores`       | Obter dados dos sensores   |
 
-### 🦷 Dentistas, Pacientes, Consultas, Diagnósticos
-
-Endpoints seguem a mesma estrutura REST:
+### 🌧️ Eventos Ambientais e Rotas de Fuga
 
 ```http
-GET    /api/[entidade]
-POST   /api/[entidade]
-PUT    /api/[entidade]/{id}
-DELETE /api/[entidade]/{id}
+GET    /api/eventos
+POST   /api/eventos
+PUT    /api/eventos/{id}
+DELETE /api/eventos/{id}
+
+GET    /api/rotas
+POST   /api/rotas
 ```
 
 > Consulte o Swagger para detalhes de payloads, validações e respostas.
@@ -115,6 +117,6 @@ DELETE /api/[entidade]/{id}
 
 ## 📌 Observações Finais
 
-- O projeto está organizado em camadas (**API**, **Application**, **Domain**, **Infrastructure**, **Test**).  
-- Utiliza princípios **SOLID** e práticas de **Clean Architecture**.  
-- Ideal para fins acadêmicos e aprendizado sobre construção de APIs seguras com .NET.
+- O projeto segue os princípios de arquitetura em camadas (**API**, **Application**, **Domain**, **Infrastructure**, **Test**).  
+- Utiliza **Clean Architecture** e princípios **SOLID**.  
+- Ideal para projetos acadêmicos e iniciativas de impacto social com foco em cidades inteligentes.
